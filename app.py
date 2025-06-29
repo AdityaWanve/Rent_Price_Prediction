@@ -1,9 +1,24 @@
 from flask import Flask, request, render_template
 import joblib
 import pandas as pd
+import os
+import requests
+
+MODEL_PATH = 'xgboost_model_analysis_pune.joblib'
+MODEL_URL = 'https://drive.google.com/file/d/10jJREi0P-DbrTRQ5u77-WuJLyBk4epNC/view?usp=sharing'
+
+# Auto-download if not present
+if not os.path.exists(MODEL_PATH):
+    print("Downloading model from Google Drive...")
+    response = requests.get(MODEL_URL)
+    with open(MODEL_PATH, 'wb') as f:
+        f.write(response.content)
+
+# Load the model
+model = joblib.load(MODEL_PATH)
+
 
 # Load the model and label encoders
-model = joblib.load('xgboost_model_analysis_pune.joblib')
 label_encoders = joblib.load('label_encoders_pune.joblib')
 
 app = Flask(__name__)
