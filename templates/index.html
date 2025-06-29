@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rent Price Prediction</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      opacity: 80%;
+      background-color: rgba(255, 255, 255, 0.97);
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+      max-width: 750px;
+      width: 90%;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 5px;
+      font-size: 28px;
+    }
+
+    p {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 15px;
+      color: #555;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    select, input[type="number"] {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .city-small {
+      width: 150px;
+    }
+
+    .full-width {
+      grid-column: 1 / span 2;
+    }
+
+    .button-wrapper {
+      grid-column: 1 / span 2;
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    input[type="submit"] {
+      width: 200px;
+      padding: 12px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    @media (max-width: 600px) {
+      form {
+        grid-template-columns: 1fr;
+      }
+
+      .full-width,
+      .button-wrapper {
+        grid-column: 1;
+      }
+
+      .city-small {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Rent Price Prediction</h1>
+    <p>Get approx. rent price of houses in Pune!</p>
+    <form action="/predict" method="post">
+      <div>
+        <label for="bedroom">Bedroom:</label>
+        <input type="number" id="bedroom" name="bedroom" placeholder="e.g. 2" required />
+      </div>
+
+      <div>
+        <label for="layout_type">Layout Type:</label>
+        <select id="layout_type" name="layout_type" required>
+          <option value="">Select layout</option>
+          <option>BHK</option>
+          <option>RK</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="property_type">Property Type:</label>
+        <select id="property_type" name="property_type" required>
+          <option value="">Select type</option>
+          <option>Apartment</option>
+          <option>Independent Floor</option>
+          <option>Independent House</option>
+          <option>Penthouse</option>
+          <option>Studio Apartment</option>
+          <option>Villa</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="locality">Locality:</label>
+        <select id="locality" name="locality" required>
+          <option value="">Select locality</option>
+          <option>Baner</option>
+          <option>Aundh</option>
+          <option>Wakad</option>
+          <option>Hinjewadi</option>
+          <option>Kothrud</option>
+          <option>Hadapsar</option>
+          <option>Kharadi</option>
+          <option>Viman Nagar</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="furnish_type">Furnish Type:</label>
+        <select id="furnish_type" name="furnish_type" required>
+          <option value="">Select type</option>
+          <option>Furnished</option>
+          <option>Semi-Furnished</option>
+          <option>Unfurnished</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="bathroom">Bathroom:</label>
+        <input type="number" id="bathroom" name="bathroom" placeholder="e.g. 1" required />
+      </div>
+
+      <div>
+        <label for="area">Area (sq. ft.):</label>
+        <input type="number" id="area" name="area" placeholder="e.g. 850" required />
+      </div>
+
+      <div>
+        <label for="seller_type">Seller Type:</label>
+        <select id="seller_type" name="seller_type" required>
+          <option value="">Select seller</option>
+          <option>OWNER</option>
+          <option>AGENT</option>
+          <option>BUILDER</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="city">City:</label>
+        <select id="city" name="city" class="city-small" required>
+          <option value="">Select city</option>
+          <option>Pune</option>
+        </select>
+      </div>
+
+      <div class="button-wrapper">
+        <input type="submit" value="Predict" />
+      </div>
+    </form>
+  </div>
+</body>
+</html>
